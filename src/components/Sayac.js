@@ -16,7 +16,9 @@ Diğer şeyler basitçe sayımın kendisinden türetilebilir.
 
 ADIM 0:
   Aşağıdaki bileşeni inceleyerek ve state hookunu import ederek başlayın.
+*/
 
+/*
 ADIM 1:
   State hookunu kullanara, bir 'sayici', 'setSayici' çifti oluşturun.
   'sayici' state'inin ilk değeri 0 olarak yüklenmelidir.
@@ -45,37 +47,46 @@ ADIM 6:
 	Bu click handler 'sayici' yı sıfırlamak için 'setSayici' yi kullanacak.
 */
 
-import React from 'react'; /* ADIM 0 buraya*/
-
+import React from "react"; /* ADIM 0 buraya*/
+import { useState } from "react";
 export default function Sayac() {
   /* ADIM 1 buraya*/
-	
-	
+  const [sayici, setSayici] = useState(0);
+
   const artirici = () => {
     /* ADIM 4 buraya */
+    setSayici(sayici + 1);
   };
   const azaltici = () => {
     /* ADIM 5 */
+    setSayici(sayici - 1);
   };
   const reset = () => {
+    setSayici(0);
   };
 
   const stil = {
-    fontSize: '1.5em',
-    marginBottom: '0.3em',
-    color: 'royalblue', /* ADIM 2 */
+    fontSize: "1.5em",
+    marginBottom: "0.3em",
+    color: sayici % 2 === 0 ? "royalblue" : "crimson",
   };
 
   return (
-    <div className='widget-counter container'>
+    <div className="widget-counter container">
       <h2>Sayaç</h2>
-      <div id='sayici' style={stil}>
-        Sayı {sayici} {/* ADIM 3  buraya*/ }
+      <div id="sayici" style={stil}>
+        Sayı {sayici} {sayici % 2 === 0 ? "çift" : "tek"}
       </div>
       <div>
-        <button id='artirici' onClick={artirici}>Artırıcı</button>
-        <button id='decrement' onClick={azaltici}>Azaltıcı</button>
-        <button id='resetCount' onClick={reset}>Reset</button>
+        <button id="artirici" onClick={artirici}>
+          Artırıcı
+        </button>
+        <button id="decrement" onClick={azaltici}>
+          Azaltıcı
+        </button>
+        <button id="resetCount" onClick={reset}>
+          Reset
+        </button>
       </div>
     </div>
   );
